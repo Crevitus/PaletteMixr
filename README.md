@@ -1,4 +1,4 @@
-# ColorSharp
+# PaletteSharp
 A library for generating color palettes.
 
 
