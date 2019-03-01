@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Drawing;
 
-namespace ColorSharp
+namespace PaletteMixr
 {
     internal static class ColorExtensions
     {

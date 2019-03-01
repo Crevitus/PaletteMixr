@@ -2,7 +2,7 @@
 using System.Drawing;
 using Xunit;
 
-namespace ColorSharp.Tests
+namespace PaletteMixr.Tests
 {
     public class PaletteGeneratorTests
     {

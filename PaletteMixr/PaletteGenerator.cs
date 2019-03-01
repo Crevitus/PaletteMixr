@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 
-namespace ColorSharp
+namespace PaletteMixr
 {
     public class PaletteGenerator
     {

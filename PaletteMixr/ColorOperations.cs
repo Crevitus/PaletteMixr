@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace ColorSharp
+namespace PaletteMixr
 {
     public static class ColorOperations
     {
