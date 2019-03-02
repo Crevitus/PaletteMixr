@@ -1,3 +1,5 @@
+![Nuget (with prereleases)](https://img.shields.io/nuget/vpre/PaletteMixr.svg)
+
 # PaletteMixr
 A library for generating color palettes.
 
