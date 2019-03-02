@@ -1,4 +1,4 @@
-![https://www.nuget.org/packages/PaletteMixr](https://img.shields.io/nuget/vpre/PaletteMixr.svg)
+[![NuGet Version](https://img.shields.io/nuget/vpre/PaletteMixr.svg)](https://www.nuget.org/packages/PaletteMixr)
 
 # PaletteMixr
 A library for generating color palettes.
