@@ -5,6 +5,19 @@ namespace PaletteMixr
 {
     public static class ColorOperations
     {
+        public static Func<Color, Color> Combine(params Func<Color, Color>[] operations)
+        {
+            return (color) =>
+            {
+                foreach (var operation in operations)
+                {
+                    color = operation(color);
+                }
+
+                return color;
+            };
+        }
+
         public static Func<Color, Color> ShiftHue(double angle)
         {
             return (color) =>
