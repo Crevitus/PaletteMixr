@@ -48,6 +48,8 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorOperationsTestData.cs" />
+    <Compile Include="SaturationTests.cs" />
     <Compile Include="HueShiftTests.cs" />
     <Compile Include="PaletteGeneratorTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

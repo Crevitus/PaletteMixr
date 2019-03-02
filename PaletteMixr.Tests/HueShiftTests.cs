@@ -82,8 +82,15 @@ namespace PaletteMixr.Tests
             yield return new ShiftHueTestData
             {
                 BaseColor = Color.FromArgb(24, 56, 0),
-                ExpectedColor = Color.FromArgb(0, 5, 56),
-                Angle = 500,
+                ExpectedColor = Color.FromArgb(24, 56, 0),
+                Angle = -36000,
+            };
+
+            yield return new ShiftHueTestData
+            {
+                BaseColor = Color.FromArgb(24, 56, 0),
+                ExpectedColor = Color.FromArgb(24, 56, 0),
+                Angle = 36000,
             };
         }
 
