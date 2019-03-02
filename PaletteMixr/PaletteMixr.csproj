@@ -7,7 +7,7 @@
     <Version>0.1.0-alpha</Version>
     <Authors>Ben Crevis</Authors>
     <Description>A library for generating color palettes.</Description>
-    <Copyright>MIT</Copyright>
+    <Copyright>Ben Crevis</Copyright>
     <AssemblyVersion>0.1.0.0</AssemblyVersion>
     <FileVersion>0.1.0.0</FileVersion>
     <PackageTags>Palette, Color, HSL, RGB, Generator</PackageTags>
@@ -17,7 +17,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <None Include="../LICENSE" Pack="true" Visible="false" PackagePath=""/>
+    <None Include="../LICENSE" Pack="true" Visible="false" PackagePath="" />
   </ItemGroup>
 
 </Project>
