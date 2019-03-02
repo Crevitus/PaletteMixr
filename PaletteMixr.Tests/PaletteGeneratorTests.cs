@@ -1,12 +1,11 @@
-﻿using System;
+﻿using NUnit.Framework;
 using System.Drawing;
-using Xunit;
 
 namespace PaletteMixr.Tests
 {
     public class PaletteGeneratorTests
     {
-        [Fact]
+        [Test]
         public void TestMethod1()
         {
             var test = Color.Green;
