@@ -4,8 +4,53 @@
 [![NuGet Version](https://img.shields.io/nuget/vpre/PaletteMixr.svg)](https://www.nuget.org/packages/PaletteMixr)
 
 # PaletteMixr
-A library for generating color palettes.
+A library for generating color palettes. Generates a palette of colors based on a single color, providing operations to change the hue, saturation and luminosity.
 
+# Usage
+
+## Basic Usage
+
+To generate a palette of colors by shifting the hue simply write:
+
+```csharp
+
+var paletteGenerator = new PaletteGenerator(Color.Blue);
+var palette = paletteGenerator.GenerateHuePalette(16);
+
+```
+
+The `PalleteGenerator` takes an instance of the `System.Drawing.Color` struct as the base color for the palette.
+
+The method `GenerateHuePalette(int paletteSize)` takes an `int` that determines the size of the pallet - determining the number of hue degrees to shift when creating the palette.
+
+## Advanced
+
+For a more custom palette, the `PaletteGenerator` can be used to generate any number of colors by passing in color operations, each one adjusting the base color and adding the result to color palette collection that is returned:
+
+```csharp
+
+using static PaletteMixr.ColorOperations;
+...
+
+var paletteGenerator = new PaletteGenerator(Color.Blue);
+
+paletteGenerator.GeneratePalette(
+                ShiftHue(30),
+                AdjustSaturation(-10)
+                );
+```
+
+
+To combine color operations together to create 1 palette color you can use the `Combine` function:
+
+```csharp
+paletteGenerator.GeneratePalette(
+    ShiftHue(30),
+    Combine(
+        ShiftHue(10),
+        AdjustSaturation(50)
+    ));
+```
 
 # Credit
 
