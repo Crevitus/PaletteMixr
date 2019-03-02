@@ -14,17 +14,17 @@ namespace PaletteMixr
             _baseColor = baseColor;
         }
 
-        public List<Color> GenerateHuePalette(int paletteSize)
+        public ICollection<Color> GenerateHuePalette(int paletteSize)
         {
             var hueInterval = CalculateHueIntervals(paletteSize);
 
-            var hueShifts = new List<Func<Color, Color>>();
+            var hueShifts = new Func<Color, Color>[paletteSize];
 
             for(var i = 0; i < paletteSize; i++)
             {
                 var shiftDegree = (hueInterval * i) - hueSpace;
 
-                hueShifts.Add(ColorOperations.ShiftHue(shiftDegree));
+                hueShifts[i] = (ColorOperations.ShiftHue(shiftDegree));
             }
 
             return GeneratePalette(hueShifts);
@@ -35,7 +35,7 @@ namespace PaletteMixr
             return (double)(hueSpace * 2) / paletteSize;
         }
 
-        public List<Color> GeneratePalette(List<Func<Color, Color>> operations)
+        public ICollection<Color> GeneratePalette(params Func<Color, Color>[] operations)
         {
             var palette = new List<Color>();
 
