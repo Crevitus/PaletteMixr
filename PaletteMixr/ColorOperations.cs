@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 
 namespace PaletteMixr
 {
@@ -12,54 +10,45 @@ namespace PaletteMixr
             return (color) =>
             {
                 var hsl = color.ToHsl();
+
+                angle = angle.Clamp(-360d, 360d);
                 var h = (hsl.H + (angle / 360d));
                 while (h < 0d) h++;
+                while (h > 1d) h--;
 
                 return new HslColor(h, hsl.S, hsl.L).ToColor();
             };
         }
 
-        public static Func<Color, Color> Desaturate(double factor) {
+        public static Func<Color, Color> AdjustSaturation(double percentage)
+        {
             return (color) =>
             {
                 var hsl = color.ToHsl();
-                var s = Math.Max(Math.Min(hsl.S * (factor / 100d), 100d), 0d);
+
+                var s = AdjustValue(hsl.S, percentage);
 
                 return new HslColor(hsl.H, s, hsl.L).ToColor();
             };
         }
 
-        public static Func<Color, Color> Saturate(double factor)
+        public static Func<Color, Color> AdjustBrightness(double percentage)
         {
             return (color) =>
             {
                 var hsl = color.ToHsl();
-                var s = 100d - Math.Max(Math.Min((100d - hsl.S) * (factor / 100d), 100d), 0);
 
-                return new HslColor(hsl.H, s, hsl.L).ToColor();
-            };
-        }
-
-        public static Func<Color, Color> Darken(double factor)
-        {
-            return (color) =>
-            {
-                var hsl = color.ToHsl();
-                var l = Math.Max(Math.Min(hsl.L * (factor / 100d), 100d), 0d);
+                var l = AdjustValue(hsl.L, percentage);
 
                 return new HslColor(hsl.H, hsl.S, l).ToColor();
             };
         }
 
-        public static Func<Color, Color> Brighten(double factor)
+        private static double AdjustValue(double value, double percentage)
         {
-            return (color) =>
-            {
-                var hsl = color.ToHsl();
-                var l = Math.Max(Math.Min((100d - hsl.L) * (factor / 100d), 100d), 0d);
+            var adjustedValue = value + (percentage / 100d);
 
-                return new HslColor(hsl.H, hsl.S, l).ToColor();
-            };
+            return adjustedValue.Clamp(0d, 1d);
         }
     }
 }

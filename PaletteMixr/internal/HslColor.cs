@@ -48,7 +48,7 @@ namespace PaletteMixr
             g = Math.Round(g * 255d);
             b = Math.Round(b * 255d);
 
-            return Color.FromArgb((int)r, (int)g, (int)b);
+            return Color.FromArgb((byte)r, (byte)g, (byte)b);
         }
 
         private double ConvertColorPart(double temp1, double temp2, double hue)
