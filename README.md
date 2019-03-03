@@ -15,13 +15,13 @@ To generate a palette of colors by shifting the hue simply write:
 ```csharp
 
 var paletteGenerator = new PaletteGenerator(Color.Blue);
-var palette = paletteGenerator.GenerateHuePalette(16);
+var palette = paletteGenerator.GenerateHuePalette(PaletteSize.Small);
 
 ```
 
 The `PalleteGenerator` takes an instance of the `System.Drawing.Color` struct as the base color for the palette.
 
-The method `GenerateHuePalette(int paletteSize)` takes an `int` that determines the size of the pallet - determining the number of hue degrees to shift when creating the palette.
+The method `GenerateHuePalette(PaletteSize paletteSize)` takes a `PaletteSize` enum that determines the size of the pallet - determining the number of hue degrees to shift when creating the palette.
 
 ## Advanced
 
