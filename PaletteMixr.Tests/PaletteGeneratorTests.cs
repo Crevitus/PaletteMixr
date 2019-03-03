@@ -7,13 +7,13 @@ namespace PaletteMixr.Tests
     public class PaletteGeneratorTests
     {
         [Test]
-        public void TestMethod1()
+        public void ShouldGenerate_FullHueRange()
         {
             var test = Color.Green;
 
-            var testGen = new PaletteGenerator(test);
+            var testGen = new PaletteGenerator(test, hueSpace: 89);
 
-            var results = testGen.GenerateHuePalette(16);
+            var results = testGen.GenerateSaturationPalette(PaletteSize.XLarge);
 
             testGen.GeneratePalette(
                 ShiftHue(30),

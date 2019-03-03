@@ -4,35 +4,63 @@ using System.Drawing;
 
 namespace PaletteMixr
 {
-    public class PaletteGenerator
+    public partial class PaletteGenerator
     {
-        private const int hueSpace = 180;
         private readonly Color _baseColor;
+        private readonly int _hueSpace;
+        private readonly int _saturationRange;
+        private readonly int _luminosityRange;
 
-        public PaletteGenerator(Color baseColor)
+        public PaletteGenerator(
+            Color baseColor,
+            int hueSpace = 360,
+            int saturationRange = 100,
+            int luminosityRange = 100)
         {
             _baseColor = baseColor;
+            _hueSpace = hueSpace.Clamp(10, 360);
+            _saturationRange = saturationRange.Clamp(10, 100);
+            _luminosityRange = luminosityRange.Clamp(10, 100);
         }
 
-        public ICollection<Color> GenerateHuePalette(int paletteSize)
+        public ICollection<Color> GenerateHuePalette(PaletteSize paletteSize)
         {
-            var hueInterval = CalculateHueIntervals(paletteSize);
+            Func<double, Func<Color, Color>> operationFn = ColorOperations.ShiftHue;
 
-            var hueShifts = new Func<Color, Color>[paletteSize];
+            return GeneratePaletteType(paletteSize, _hueSpace, operationFn);
+        }
 
-            for(var i = 0; i < paletteSize; i++)
+        public ICollection<Color> GenerateSaturationPalette(PaletteSize paletteSize)
+        {
+            Func<double, Func<Color, Color>> operationFn = ColorOperations.AdjustSaturation;
+
+            return GeneratePaletteType(paletteSize, _saturationRange, operationFn);
+        }
+
+        public ICollection<Color> GenerateBrightnessPalette(PaletteSize paletteSize)
+        {
+            Func<double, Func<Color, Color>> operationFn = ColorOperations.AdjustBrightness;
+
+            return GeneratePaletteType(paletteSize, _luminosityRange, operationFn);
+        }
+
+        private ICollection<Color> GeneratePaletteType(
+            PaletteSize paletteSize,
+            int adjustmentRange,
+            Func<double, Func<Color, Color>> operationFn)
+        {
+            var operations = new Func<Color, Color>[(int)paletteSize];
+
+            var adjustmentInterval = (double)adjustmentRange / ((int)paletteSize - 1);
+
+            for (var i = 0; i < (int)paletteSize; i++)
             {
-                var shiftDegree = (hueInterval * i) - hueSpace;
+                double adjustment = (adjustmentInterval * i) - ((double)adjustmentRange / 2);
 
-                hueShifts[i] = (ColorOperations.ShiftHue(shiftDegree));
+                operations[i] = operationFn(adjustment);
             }
 
-            return GeneratePalette(hueShifts);
-        }
-
-        private double CalculateHueIntervals(int paletteSize)
-        {
-            return (double)(hueSpace * 2) / paletteSize;
+            return GeneratePalette(operations);
         }
 
         public ICollection<Color> GeneratePalette(params Func<Color, Color>[] operations)
