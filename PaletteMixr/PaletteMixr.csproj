@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
-    <Version>0.1.0-alpha</Version>
+    <Version>0.1.0</Version>
     <Authors>Ben Crevis</Authors>
     <Description>A library for generating color palettes.</Description>
     <Copyright>Ben Crevis</Copyright>
@@ -15,7 +15,7 @@
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <Company />
   </PropertyGroup>
-  
+
   <ItemGroup>
     <None Include="../LICENSE" Pack="true" Visible="false" PackagePath="" />
   </ItemGroup>
